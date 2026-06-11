@@ -141,6 +141,16 @@ class ThreeApp {
         this.bladeGroup = new THREE.Group();
         this.group.add(this.bladeGroup);
 
+        const bodyShape = new THREE.CylinderGeometry(0.2, 0.2, 2, 20);
+        const body = new THREE.Mesh(bodyShape, this.material);
+        this.scene.add(body);
+
+        const neckShape = new THREE.CylinderGeometry(0.3, 0.3, 1, 20);
+        const neck = new THREE.Mesh(neckShape, this.material);
+        neck.position.y = 1.1;
+        neck.rotation.x = Math.PI * 0.5;
+        this.group.add(neck);
+
         // 共通のジオメトリ、マテリアルから、複数のメッシュインスタンスを作成する
         const torusCount = 4;
         const transformScale = 5.0;
@@ -168,6 +178,7 @@ class ThreeApp {
         }
 
         // 羽を少し前へ
+        this.bladeGroup.position.y = 1.2;
         this.bladeGroup.position.z = 1.0;
 
 
